@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>License Plate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ <link rel="stylesheet" href="../static/css/animate.css">
+    
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../static/css/magnific-popup.css">
+    
+    <link rel="stylesheet" href="../static/css/flaticon.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+  <body>
+
+  	<div class="wrap">
+			<div class="container">
+			 
+			</div>
+		</div>
+    
+	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	     <a class="navbar-brand" href="index.html">License Plate Detection <span> </span></a>
+	      
+
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	               <li class="nav-item active"><a href="{{url_for('index')}}" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="{{url_for('login')}}" class="nav-link">Login</a></li>
+	 
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+    
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('../static/images/fd.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate mb-5 text-center">
+          	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html"> <i ></i></a></span> <span> <i ></i></span></p>
+            <h2 class="mb-0 bread">Upload image</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12">
+						 
+						 <head>
+			  <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>			  
+</head>
+ 
+
+  <nav class="root navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid row">
+      <div class="navbar-header col-md-1 col-sm-1">
+           
+      </div>
+      <div class="navbar-header col-md-9 col-sm-9"><h2 style="font-size: 3.5em;"> License Plate  detection </h1></div>    
+    </div>
+  </nav>
+
+
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-left:270px;">
+   
+			<body>
+
+{% block content %}
+    <div class="se-pre-con"></div>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+       
+
+        <!-- Page Content Holder -->
+        <div id="content">
+            <!-- top-bar -->
+            <nav class="navbar navbar-default mb-xl-5 mb-4">
+                <div class="container-fluid">
+
+                     
+                    
+		   
+                    
+                </div>
+            </nav>
+            <!--// top-bar -->
+            <div class="container-fluid">
+                <div class="row">
+                    
+                    <!--// Stats -->
+                    <!-- Pie-chart -->
+                    <div class="outer-w3-agile col-xl ml-xl-3 mt-xl-0 mt-3">
+<form action="http://localhost:5000/uploader" method="POST" enctype="multipart/form-data">
+  <input type='file' name="upload" onchange="readURL(this);" />
+    <img id="blah" src="{{url_for('static', filename='images/default.gif')}}" alt="your image" />
+	<input type='submit' value='Upload'/>
+	</form>
+
+                    </div>
+                    <!--// Pie-chart -->
+                </div>
+            </div> 
+        </div>
+    </div>
+
+
+    <!-- Required common Js -->
+    <script src="{{url_for('static',filename='js/jquery-2.2.3.min.js')}}"></script>
+    <!-- //Required common Js -->
+    
+    <!-- loading-gif Js -->
+    <script src="{{url_for('static',filename='js/modernizr.js')}}"></script>
+    <script>
+        //paste this code under head tag or in a seperate js file.
+        // Wait for window load
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+    </script>
+    <!--// loading-gif Js -->
+
+    <!-- Sidebar-nav Js -->
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+    <!--// Sidebar-nav Js -->
+
+    <!-- Graph -->
+    <script src="js/SimpleChart.js"></script>
+    <script>
+        var graphdata4 = {
+            linecolor: "Random",
+            title: "Thursday",
+            values: [{
+                    X: "6",
+                    Y: 300.00
+                },
+                {
+                    X: "7",
+                    Y: 101.98
+                },
+                {
+                    X: "8",
+                    Y: 140.00
+                },
+                {
+                    X: "9",
+                    Y: 340.00
+                },
+                {
+                    X: "10",
+                    Y: 470.25
+                },
+                {
+                    X: "11",
+                    Y: 180.56
+                },
+                {
+                    X: "12",
+                    Y: 680.57
+                },
+                {
+                    X: "13",
+                    Y: 740.00
+                },
+                {
+                    X: "14",
+                    Y: 800.89
+                },
+                {
+                    X: "15",
+                    Y: 420.57
+                },
+                {
+                    X: "16",
+                    Y: 980.24
+                },
+                {
+                    X: "17",
+                    Y: 1080.00
+                },
+                {
+                    X: "18",
+                    Y: 140.24
+                },
+                {
+                    X: "19",
+                    Y: 140.58
+                },
+                {
+                    X: "20",
+                    Y: 110.54
+                },
+                {
+                    X: "21",
+                    Y: 480.00
+                },
+                {
+                    X: "22",
+                    Y: 580.00
+                },
+                {
+                    X: "23",
+                    Y: 340.89
+                },
+                {
+                    X: "0",
+                    Y: 100.26
+                },
+                {
+                    X: "1",
+                    Y: 1480.89
+                },
+                {
+                    X: "2",
+                    Y: 1380.87
+                },
+                {
+                    X: "3",
+                    Y: 1640.00
+                },
+                {
+                    X: "4",
+                    Y: 1700.00
+                }
+            ]
+        };
+        $(function () {
+            $("#Hybridgraph").SimpleChart({
+                ChartType: "Hybrid",
+                toolwidth: "50",
+                toolheight: "25",
+                axiscolor: "#E6E6E6",
+                textcolor: "#6E6E6E",
+                showlegends: false,
+                data: [graphdata4],
+                legendsize: "140",
+                legendposition: 'bottom',
+                xaxislabel: 'Hours',
+                title: 'Weekly Profit',
+                yaxislabel: 'Profit in $'
+            });
+        });
+    </script>
+    <!--// Graph -->
+    <!-- Bar-chart -->
+    <script src="{{url_for('static',filename='js/rumcaJS.js')}}"></script>
+    <script src="{{url_for('static',filename='js/example.js')}}"></script>
+    <!--// Bar-chart -->
+    <!-- Calender -->
+    <script src="{{url_for('static',filename='js/moment.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/pignose.calender.js')}}"></script>
+    <script>
+        //<![CDATA[
+        $(function () {
+            $('.calender').pignoseCalender({
+                select: function (date, obj) {
+                    obj.calender.parent().next().show().text('You selected ' +
+                        (date[0] === null ? 'null' : date[0].format('YYYY-MM-DD')) +
+                        '.');
+                }
+            });
+
+            $('.multi-select-calender').pignoseCalender({
+                multiple: true,
+                select: function (date, obj) {
+                    obj.calender.parent().next().show().text('You selected ' +
+                        (date[0] === null ? 'null' : date[0].format('YYYY-MM-DD')) +
+                        '~' +
+                        (date[1] === null ? 'null' : date[1].format('YYYY-MM-DD')) +
+                        '.');
+                }
+            });
+        });
+        //]]>
+    </script>
+    <!--// Calender -->
+
+    <!-- profile-widget-dropdown js-->
+    <script src="js/script.js"></script>
+    <!--// profile-widget-dropdown js-->
+
+    <!-- Count-down -->
+    <script src="{{url_for('static',filename='css/js/simplyCountdown.js')}}"></script>
+    <link href="{{url_for('static',filename='css/simplyCountdown.css')}}" rel='stylesheet' type='text/css' />
+    <script>
+        var d = new Date();
+        simplyCountdown('simply-countdown-custom', {
+            year: d.getFullYear(),
+            month: d.getMonth() + 2,
+            day: 25
+        });
+    </script>
+    <!--// Count-down -->
+
+    <!-- pie-chart -->
+    <script src="{{url_for('static',filename='js/amcharts.js')}}"></script>
+    <script>
+        var chart;
+        var legend;
+
+        var chartData = [{
+                country: "Lithuania",
+                value: 260
+            },
+            {
+                country: "Ireland",
+                value: 201
+            },
+            {
+                country: "Germany",
+                value: 65
+            },
+            {
+                country: "Australia",
+                value: 39
+            },
+            {
+                country: "UK",
+                value: 19
+            },
+            {
+                country: "Latvia",
+                value: 10
+            }
+        ];
+
+        AmCharts.ready(function () {
+            // PIE CHART
+            chart = new AmCharts.AmPieChart();
+            chart.dataProvider = chartData;
+            chart.titleField = "country";
+            chart.valueField = "value";
+            chart.outlineColor = "";
+            chart.outlineAlpha = 0.8;
+            chart.outlineThickness = 2;
+            // this makes the chart 3D
+            chart.depth3D = 20;
+            chart.angle = 30;
+
+            // WRITE
+            chart.write("chartdiv");
+        });
+    </script>
+    <!--// pie-chart -->
+
+    <!-- dropdown nav -->
+    <script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+     function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(250)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+		</script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+    <!-- //Js for bootstrap working -->
+{% endblock %}
+</body>			 
+						 
+	</div>					 
+						 
+						 
+						 
+						 
+						 
+					</div>
+				</div>
+			</div>
+		</section>
+
+    <footer class="ftco-footer">
+      <div class="container">
+         
+          </div>
+          <div class="col-sm-12 col-md">
+          
+        </div>
+      
+      <div class="container-fluid px-0 py-5 bg-black">
+      	<div class="container">
+      		<div class="row">
+	          <div class="col-md-12">
+		
+	            <p class="mb-0" style="color: rgba(255,255,255,.5);"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	 <script></script> <i  aria-hidden="true"></i>   <a href="https://colorlib.com" target="_blank"></a>
+	  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+	          </div>
+	        </div>
+      	</div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+ <script src="../static/js/jquery.min.js"></script>
+  <script src="../static/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="../static/js/popper.min.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/jquery.easing.1.3.js"></script>
+  <script src="../static/js/jquery.waypoints.min.js"></script>
+  <script src="../static/js/jquery.stellar.min.js"></script>
+  <script src="../static/js/owl.carousel.min.js"></script>
+  <script src="../static/js/jquery.magnific-popup.min.js"></script>
+  <script src="../static/js/jquery.animateNumber.min.js"></script>
+  <script src="../static/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="../static/js/google-map.js"></script>
+  <script src="../static/js/main.js"></script>
+    
+  </body>
+</html>
