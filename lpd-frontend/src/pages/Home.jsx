@@ -1,21 +1,24 @@
 import React from "react";
 import "../static/Home.css";
+import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Login from "../components/Login";
-// import Marquee from "../static/Marquee";
+
 
 function Home() {
+
+  const [buttonPopup, setbuttonPopup] = useState(false);
+
   return (
     <>
-      <div className="flex flex-col min-h-screen">
-        {/* Header */}
-        <header>
-          <Header />
-        </header>
-
+      <div className="flex flex-col min-h-screen bg-gradient-to-r from-purple-700 to-blue-800">
+      {/* Header */}
+      <header>
+        <Header />
+      </header>
         {/* Main Content */}
-        <main className="flex-grow bg-gradient-to-r from-purple-700 to-blue-800 flex flex-col items-start justify-start">
+        <main className="flex-grow flex flex-col items-start justify-start">
           <div className="text-white text-center mb-8 mt-4 ml-4">
             <h1 className="text-5xl font-bold">License Plate Detection</h1>
           </div>
@@ -27,50 +30,17 @@ function Home() {
               <li>Real-time processing capabilities</li>
               <li>Easy integration into existing systems</li>
             </ul>
-
-            <div className="Login">
-              <button id="demoButton">
-                <div class="popup-container">
-                  <label class="popup-button" for="login-popup">
-                    Login
-                  </label>
-                  <input type="checkbox" id="login-popup" />
-                  <div class="popup">
-                    <label for="login-popup" class="transparent-label"></label>
-                    <div class="popup-inner">
-                      <div class="popup-title">
-                        <h6>Login</h6>
-                        <label for="login-popup" class="popup-close-btn">
-                          Close
-                        </label>
-                      </div>
-                      <div class="popup-content">
-                        <form action="">
-                          <ul>
-                            <li>
-                              <input type="text" placeholder="Username" />
-                            </li>
-                            <li>
-                              <input type="password" placeholder="Password" />
-                            </li>
-                            <li>
-                              <button type="submit">Log in</button>
-                            </li>
-                          </ul>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </button>
-            </div>
           </div>
+
+          <button onClick={() => setbuttonPopup(true)}>Popup</button>
+          {/* <Login trigger={buttonPopup}/> */}
         </main>
 
-        {/* Footer */}
-        <footer>
-          <Footer />
-        </footer>
+        {/* Footer */}  
+          <Login trigger={buttonPopup} setTrigger={setbuttonPopup} />
+      <footer>
+        <Footer />
+      </footer>
       </div>
     </>
   );

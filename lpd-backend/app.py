@@ -68,7 +68,7 @@ def index():
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    return jsonify({"status": "success", "message": "user logged in successfully"})
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
