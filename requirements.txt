@@ -1,26 +1,14 @@
-pip install requests
-pip install flask 
-pip install matplotlib
-pip install pandas
-pip install Scikit-learn==0.20.4
-pip install cmake
-
-pip install https://pypi.python.org/packages/da/06/bd3e241c4eb0a662914b3b4875fc52dd176a9db0d4a2c915ac2ad8800e9e/dlib-19.7.0-cp36-cp36m-win_amd64.whl#md5=b7330a5b2d46420343fbed5df69e6a3f
-
-pip install opencv-python
-
-pip install tensorflow==1.15
-
-pip install keras==2.3.1
-
-pip install opencv-python==3.3.0.9
-
-
-
+pip3 install requests
+pip3 install flask 
+pip3 install matplotlib
+pip3 install pandas
+pip3 install Scikit-learn==0.20.4
+pip3 install cmake
+pip3 install https://pypi.python.org/packages/da/06/bd3e241c4eb0a662914b3b4875fc52dd176a9db0d4a2c915ac2ad8800e9e/dlib-19.7.0-cp36-cp36m-win_amd64.whl#md5=b7330a5b2d46420343fbed5df69e6a3f
+pip3 install opencv-python
+pip3 install tensorflow==1.15
+pip3 install keras==2.3.1
+pip3 install opencv-python==3.3.0.9
 For 64-Bit OS: https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe
-
 For 32-Bit OS: https://www.python.org/ftp/python/3.6.7/python-3.6.7.exe
-
-
-
-numpy                         1.18.5
+numpy 1.18.5
