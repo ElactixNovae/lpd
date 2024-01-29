@@ -12,7 +12,7 @@ function Home() {
   return (
     <>
       {/* Header */}
-      <header className="fixed top-0 w-screen">
+      <header className="fixed top-0 w-screen z-10">
         <Header />
       </header>
       <div

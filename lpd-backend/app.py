@@ -9,6 +9,7 @@ from flask import jsonify
 from flask import json
 from flask import request
 from flask import Flask , render_template
+from flask_cors import CORS, cross_origin
 import pandas as pd
 pd.set_option("display.colheader_justify","left")
 from os import path, getcwd
@@ -37,14 +38,11 @@ process_this_frame = True
 #graph = tf.compat.v1.get_default_graph()
 app = Flask(__name__)
 app = Flask(__name__, template_folder='templates')
+CORS(app,  resources={r"/*": {"origins":["http://localhost:3000"]}})
 app.static_folder = 'static'
 app.secret_key = 'super secret key'
 
 temporary_directory = tempfile.mkdtemp()
-_allow_origin = '*'
-_allow_methods = 'PUT, GET, POST, DELETE, OPTIONS'
-_allow_headers = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
-
 
 @app.errorhandler(400)
 def bad_request(e):
@@ -66,7 +64,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     return jsonify({"status": "success", "message": "user logged in successfully"})
 

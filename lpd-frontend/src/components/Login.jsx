@@ -14,7 +14,25 @@ function Login(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+
     console.log(formData);
+    fetch('http://127.0.0.1:5000/login',{
+      method: 'POST',
+      headers:{
+        'Content-Type':'application/json',
+        "Access-Control-Allow-Origin": "http://127.0.0.1:5000/*",
+        'Access-Control-Allow-Headers': "http://127.0.0.1:5000/*",
+        'Access-Control-Allow-Methods': "http://127.0.0.1:5000/*",
+      },
+      body: JSON.stringify(formData)
+    }).then(data => {
+      data.json();
+      console.log(data)
+    });
+
+
+
   };
 
 
