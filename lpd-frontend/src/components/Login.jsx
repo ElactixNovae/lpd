@@ -1,11 +1,19 @@
 import React,{useState} from 'react'
 import '../static/Login.css'
+import Alert from './Alert';
 
 function Login(props) {
+  const [type, setType] = useState("");
+  const [message, setMessage] = useState("");
+  const [show, setShow] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+
+  if(show){
+    setTimeout(() => setShow(false), 3000);
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -14,9 +22,6 @@ function Login(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-
-    console.log(formData);
     fetch('http://127.0.0.1:5000/login',{
       method: 'POST',
       headers:{
@@ -26,20 +31,39 @@ function Login(props) {
         'Access-Control-Allow-Methods': "http://127.0.0.1:5000/*",
       },
       body: JSON.stringify(formData)
-    }).then(data => {
-      data.json();
-      console.log(data)
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setType(data.status)
+      setMessage(data.message)
+      if (data.status === "success") {
+      } else {
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
-
-
-
   };
 
 
 
   return props.trigger ? (
     <>
-      <div className="flex flex-col justify-start items-center relative">
+    {console.log(show)}
+    {console.log(type)}
+    {console.log(message)}
+    {show ? <Alert type={type} message={message}/> : null}
+    <div className='h-screen w-screen' style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -25%)",
+        }} >
+      <div className="flex flex-col justify-start items-center relative" >
       <div className="w-full max-w-xs ">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
@@ -99,6 +123,7 @@ function Login(props) {
           </div>
           <div className="flex items-center justify-between">
             <button
+              onClick={() => setShow(true)}
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
@@ -106,6 +131,7 @@ function Login(props) {
             </button>
           </div>
         </form>
+      </div>
       </div>
       </div>
     </>

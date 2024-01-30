@@ -66,7 +66,10 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return jsonify({"status": "success", "message": "user logged in successfully"})
+    if(request.json.get("password") == "admin"  and request.json.get("username")=="admin"):
+        return jsonify({"status": "success", "message": "user logged in successfully"})
+    else:
+        return jsonify({"status": "failure", "message":"invalid username or password"})
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():

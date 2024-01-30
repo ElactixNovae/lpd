@@ -4,7 +4,6 @@ import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Login from "../components/Login";
-import TP from "../components/TP";
 
 function Home() {
   const [buttonPopup, setbuttonPopup] = useState(false);
@@ -41,15 +40,14 @@ function Home() {
       </div>
       <div
         style={{
-          position: "absolute",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
+          // position: "absolute",
+          // left: "50%",
+          // top: "50%",
+          // transform: "translate(-50%, -25%)",
         }}
       >
         <Login trigger={buttonPopup} setTrigger={setbuttonPopup} />
       </div>
-
       {/* Footer */}
       <footer className=" fixed bottom-0 w-screen">
         <Footer />
