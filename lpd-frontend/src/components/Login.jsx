@@ -1,11 +1,13 @@
 import React,{useState} from 'react'
 import '../static/Login.css'
 import Alert from './Alert';
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
   const [type, setType] = useState("");
   const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -27,8 +29,8 @@ function Login(props) {
       headers:{
         'Content-Type':'application/json',
         "Access-Control-Allow-Origin": "http://127.0.0.1:5000/*",
-        'Access-Control-Allow-Headers': "http://127.0.0.1:5000/*",
-        'Access-Control-Allow-Methods': "http://127.0.0.1:5000/*",
+        'Access-Control-Allow-Headers': "Content-Type",
+        'Access-Control-Allow-Methods': "GET, POST",
       },
       body: JSON.stringify(formData)
     }).then(response => {
@@ -41,6 +43,9 @@ function Login(props) {
       setType(data.status)
       setMessage(data.message)
       if (data.status === "success") {
+        navigate("/license",{state : {
+          "username" : data.username
+        }});
       } else {
       }
     })

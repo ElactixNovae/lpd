@@ -17,7 +17,7 @@ from os import path, getcwd
 import cv2
 import numpy as np
 import os
-
+import json
 import DetectChars
 import DetectPlates
 import PossiblePlate
@@ -66,19 +66,40 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if(request.json.get("password") == "admin"  and request.json.get("username")=="admin"):
-        return jsonify({"status": "success", "message": "user logged in successfully"})
-    else:
+    if request.method == 'POST':
+        file_path = os.path.dirname(__file__)+"/Data.json"
+        with open(file_path, 'r+', encoding='utf-8') as json_file:
+            Data = json.load(json_file)
+            for index, item in enumerate(Data):
+                if(item["username"] == request.json.get("username") and  item["password"]==request.json.get("password")):
+                    print(Data[index]['active'] == True)
+                    Data[index]['active'] = True
+                    print(index)
+                    # 👇️ place the cursor at the beginning of the file
+                    json_file.seek(0)
+                    json.dump(Data, json_file)
+                    json_file.truncate()
+                    print('JSON file updated successfully')
+                    return jsonify({"status": "success", "message": "user logged in successfully","username":item["username"]})
+        return jsonify({"status": "failure", "message":"invalid username or password"})
+    elif request.method == 'GET':
+        file_path = os.path.dirname(__file__)+"/Data.json"
+        with open(file_path, 'r', encoding='utf-8') as json_file:
+            Data = json.load(json_file)
+            for index, item in enumerate(Data):
+                if(item["username"] == request.args.get('username') and  item["active"]==True):
+                    return jsonify({"status": "success", "message": "user logged in successfully"})
         return jsonify({"status": "failure", "message":"invalid username or password"})
 
-@app.route('/upload', methods=['GET', 'POST'])
-def upload():
-     return render_template('upload.html')
+# @app.route('/upload', methods=['GET', 'POST'])
+# def upload():
+#      return render_template('upload.html')
 
-@app.route('/uploader', methods=['GET', 'POST'])
+@app.route('/upload', methods=['POST'])
 def upload_file():
-    
-    file = request.files.get('upload')
+    print(request.headers)
+    print(request.files)
+    file = request.files['image']
     filename, ext = os.path.splitext(file.filename)
     if ext not in ('.png', '.jpg', '.jpeg'):
         return 'File extension not allowed.'
@@ -90,7 +111,7 @@ def upload_file():
     num = plate_recognition.main(temp_storage)
         
     data=str("\nLicense Plate Read from Image = " + num + "\n")
-    return render_template('classify.html',data=data)
+    return jsonify({"status": "success","result": num})
 # end main
 
 ###################################################################################################
