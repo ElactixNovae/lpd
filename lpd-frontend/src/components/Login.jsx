@@ -71,7 +71,7 @@ function Login(props) {
       <div className="flex flex-col justify-start items-center relative" >
       <div className="w-full max-w-xs ">
         <form
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
+          className="bg-violet-50 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col"
           onSubmit={handleSubmit}
         >
           <div className='flex flex-col items-end justify-end'>
@@ -130,7 +130,7 @@ function Login(props) {
             <button
               onClick={() => setShow(true)}
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Sign In
             </button>

@@ -31,10 +31,19 @@ function LicensePlateDetection() {
     }
   };
 
+  function restore(){
+    setRender(false);
+    setResp(null);
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    document.getElementById("photoupload").reset();
+  }
+
   if (loading) {
     fetchData(); // Fetch data before rendering
     return <div>Loading...</div>;
   }
+
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -80,14 +89,14 @@ function LicensePlateDetection() {
     return (
       <>
         <Header />
-        <div className="flex flex-col justify-center items-center h-screen">
+        <div className="flex flex-col justify-center items-center h-screen bg-[linear-gradient(to_right_bottom,rgba(90,34,139,0.5),rgba(102,51,153,0.5)),url('https://images.unsplash.com/photo-1534706438758-534c634c4591?q=80&w=2439&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover">
           <div
             className={
               "max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-md shadow-md" +
               (resp || render ? " hidden" : "")
             }
           >
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <form onSubmit={handleSubmit} encType="multipart/form-data" id="photoupload">
               <label
                 htmlFor="photoInput"
                 className="block text-sm font-medium text-gray-700"
@@ -101,7 +110,7 @@ function LicensePlateDetection() {
                 id="photoInput"
                 accept="image/*"
                 onChange={handleFileChange}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-violet-500"
               />
               {previewUrl && (
                 <div className="mt-4">
@@ -116,7 +125,7 @@ function LicensePlateDetection() {
               <button
                 encType="multipart/form-data"
                 type="submit"
-                className="mt-4 p-2 w-full bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+                className="mt-4 p-2 w-full bg-violet-500 text-white rounded-md hover:bg-violet-600 focus:outline-none focus:shadow-outline-blue"
               >
                 Submit
               </button>
@@ -124,11 +133,11 @@ function LicensePlateDetection() {
           </div>
           {render ? (
             // Code to render when additionalCondition is true
-            <div class="flex space-x-2 justify-center items-center bg-white">
+            <div class="flex space-x-2 justify-center items-center bg-transparent">
               <span class="sr-only">Loading...</span>
-              <div class="h-4 w-4 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-              <div class="h-4 w-4 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-              <div class="h-4 w-4 bg-black rounded-full animate-bounce"></div>
+              <div class="h-4 w-4 bg-white border-violet-800 border-2 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+              <div class="h-4 w-4 bg-white border-violet-800 border-2 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+              <div class="h-4 w-4 bg-white border-violet-800 border-2 rounded-full animate-bounce"></div>
             </div>
           ) : (
             ""
@@ -136,7 +145,15 @@ function LicensePlateDetection() {
           {/* Additional if-else condition */}
           {resp ? (
             // Code to render when additionalCondition is true
-            <div className="mt-8 text-green-500">{resp.result}</div>
+            <>
+              <div className="p-4 rounded-lg shadow-md bg-violet-500 text-white text-4xl">
+                {resp.result}
+              </div>
+              <button class="bg-white mt-4 hover:bg-violet-500 text-violet-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded"
+                onClick={restore} >
+                Upload Another
+              </button>
+            </>
           ) : (
             <></>
           )}
