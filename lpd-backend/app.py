@@ -111,7 +111,7 @@ def upload_file():
     num = plate_recognition.main(temp_storage)
         
     data=str("\nLicense Plate Read from Image = " + num + "\n")
-    return jsonify({"status": "success","result": num})
+    return jsonify({"status": "success","result": num.upper()})
 # end main
 
 ###################################################################################################

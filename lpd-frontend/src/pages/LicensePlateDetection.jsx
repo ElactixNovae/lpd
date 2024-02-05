@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import Alert from '../components/Alert';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Alert from "../components/Alert";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function LicensePlateDetection() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [render, setRender] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [resp, setResp] = useState(null);
   const location = useLocation();
   const param = location.state;
   console.log(param);
 
   const fetchData = async () => {
     try {
-      const url = "http://127.0.0.1:5000/login?username="+param.username;
+      const url = "http://127.0.0.1:5000/login?username=" + param.username;
       const method = "GET";
       const content = "application/json";
-      const result = await getResponse(url,null,method,content);
+      const result = await getResponse(url, null, method, content);
       // console.log("Data:", result);
       setData(result);
     } catch (error) {
@@ -54,97 +56,129 @@ function LicensePlateDetection() {
     event.preventDefault();
 
     if (!selectedFile) {
-      console.error('No file selected');
+      console.error("No file selected");
       return;
     }
 
     try {
+      setRender(true);
       const url = "http://127.0.0.1:5000/upload";
       const method = "POST";
       const formData = new FormData();
-      formData.append('image', selectedFile);
+      formData.append("image", selectedFile);
       // const content = 'multipart/form-data';
-      const result = await getResponse(url,formData,method,null);
-      console.log(result);
+      const result = await getResponse(url, formData, method, null);
+      setResp(result);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    } finally {
+      setRender(false);
     }
-    catch (error) {
-        console.error('Error uploading image:', error);
-      }
   };
 
-
-  return data.status === "success" ? (<>
-    <Header />
-    <div className='flex flex-col justify-center items-center h-screen'>
-    <div className="max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-md shadow-md">
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label htmlFor="photoInput" className="block text-sm font-medium text-gray-700">
-          Upload Photo
-        </label>
-        <input
-          type='file'
-          name='image'
-          required
-          id='photoInput'
-          accept='image/*'
-          onChange={handleFileChange}
-          className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-        />
-        {previewUrl && (
-          <div className="mt-4">
-            <p className="text-sm font-medium text-gray-700">Preview:</p>
-            <img src={previewUrl} alt="Preview" className="mt-2 max-w-full h-32 rounded-md" />
+  if (data.status === "success") {
+    return (
+      <>
+        <Header />
+        <div className="flex flex-col justify-center items-center h-screen">
+          <div
+            className={
+              "max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-md shadow-md" +
+              (resp || render ? " hidden" : "")
+            }
+          >
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <label
+                htmlFor="photoInput"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Upload Photo
+              </label>
+              <input
+                type="file"
+                name="image"
+                required
+                id="photoInput"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+              />
+              {previewUrl && (
+                <div className="mt-4">
+                  <p className="text-sm font-medium text-gray-700">Preview:</p>
+                  <img
+                    src={previewUrl}
+                    alt="Preview"
+                    className="mt-2 max-w-full h-32 rounded-md"
+                  />
+                </div>
+              )}
+              <button
+                encType="multipart/form-data"
+                type="submit"
+                className="mt-4 p-2 w-full bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+              >
+                Submit
+              </button>
+            </form>
           </div>
-        )}
-        <button
-          encType="multipart/form-data"
-          type="submit"
-          className="mt-4 p-2 w-full bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
-    </div>
-    <Footer />
-    </>) : (
-    <>
-      <Header />
-      <Alert />
-      <Footer />
-    </>
-  );
+          {render ? (
+            // Code to render when additionalCondition is true
+            <div class="flex space-x-2 justify-center items-center bg-white">
+              <span class="sr-only">Loading...</span>
+              <div class="h-4 w-4 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+              <div class="h-4 w-4 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+              <div class="h-4 w-4 bg-black rounded-full animate-bounce"></div>
+            </div>
+          ) : (
+            ""
+          )}
+          {/* Additional if-else condition */}
+          {resp ? (
+            // Code to render when additionalCondition is true
+            <div className="mt-8 text-green-500">{resp.result}</div>
+          ) : (
+            <></>
+          )}
+        </div>
+        <Footer />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Header />
+        <Alert />
+        <Footer />
+      </>
+    );
+  }
 }
 
-
-async function getResponse(url,dataurl, method, contentType) {
-    try {
-        const response = await fetch(url, {
-          method: method,
-          headers: {
-            ...(contentType !== null ? { 'Content-Type': contentType } : {}),
-            "Access-Control-Allow-Origin": "http://127.0.0.1:5000/*",
-            "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Allow-Methods": "*"
-          },
-          body:dataurl
-        });
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json(); // Extracting data as a JSON Object from the response
-
-        // Depending on your use case, you might want to return or do something with the data
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle the error as needed
+async function getResponse(url, dataurl, method, contentType) {
+  try {
+    const response = await fetch(url, {
+      method: method,
+      headers: {
+        ...(contentType !== null ? { "Content-Type": contentType } : {}),
+        "Access-Control-Allow-Origin": "http://127.0.0.1:5000/*",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "*",
+      },
+      body: dataurl,
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+
+    const data = await response.json(); // Extracting data as a JSON Object from the response
+
+    // Depending on your use case, you might want to return or do something with the data
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    // Handle the error as needed
+  }
 }
 
-
-
-
-
-export default LicensePlateDetection
+export default LicensePlateDetection;
