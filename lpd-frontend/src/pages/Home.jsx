@@ -16,11 +16,11 @@ function Home() {
       </header>
       <div
         id="home"
-        className={'flex flex-nowrap flex-col min-h-screen bg-[linear-gradient(to_right_bottom,rgba(90,34,139,0.5),rgba(102,51,153,0.5)),url(https://cdn.pixabay.com/photo/2018/08/18/06/05/license-plates-3614254_1280.jpg)] bg-cover ease-in-out' +(buttonPopup ? " transition delay-100 ease-in-out blur-sm" : "") }
+        className={'flex flex-nowrap flex-col min-h-screen bg-[linear-gradient(to_right_bottom,rgba(0,142,198,0.9),rgba(32,151,172,0)),url(https://cdn.pixabay.com/photo/2018/08/18/06/05/license-plates-3614254_1280.jpg)] bg-cover ease-in-out' +(buttonPopup ? " transition delay-100 ease-in-out blur-sm" : "") }
       >
         {/* Main Content */}
         <main className=" grid mt-16 flex-col items-start justify-start">
-          <div className="text-white text-center mb-8 mt-4 ml-4">
+          <div className="text-white text-center mb-8 mt-36 ml-4">
             <h1 className="text-5xl font-bold">License Plate Detection</h1>
           </div>
 
@@ -35,7 +35,7 @@ function Home() {
           {/* <Login trigger={buttonPopup}/> */}
         </main>
         <div>
-          <button className="bg-violet-600 ml-4 hover:bg-violet-800 text-white font-bold py-2 px-4 border border-violet-700 rounded" onClick={() => setbuttonPopup(true)}>Login</button>
+          <button className="bg-custom-blue1 ml-4 hover:bg-white hover:text-custom-blue1 text-white font-bold py-2 px-4 border border-cyan-600 rounded" onClick={() => setbuttonPopup(true)}>Login</button>
         </div>
       </div>
       <div

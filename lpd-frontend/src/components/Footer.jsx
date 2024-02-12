@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <>
-      <footer className="bg-violet-600 text-center justify-center items-center text-white fixed bottom-0 w-full ">
+      <footer className="bg-custom-blue2 text-center justify-center items-center text-white fixed bottom-0 w-full ">
         <div className="container pt-9">
           <div className="mb-9 flex justify-center w-screen">
             <a
@@ -92,7 +92,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className=" p-4 text-center text-neutral-200 bg-violet-950 dark:text-neutral-200">
+        <div className=" p-4 text-center text-neutral-200 bg-custom-blue4 dark:text-neutral-200">
           © 2023 Copyright:
           <a
             target="_blank"
@@ -101,7 +101,7 @@ function Footer() {
             href="https://Aniketsonii.github.io/"
           >
             {" "}
-            Aniket Soni
+            Maya
           </a>
         </div>
       </footer>

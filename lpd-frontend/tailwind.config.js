@@ -5,6 +5,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-blue': '#2cc4ff', // Define your custom RGBA color here
+        'custom-blue1': '#00D8F7', 
+        'custom-blue2': '#008EC6', 
+        'custom-blue3': '#01b8d4', 
+        'custom-blue4': '#004F81', 
+      },
       animation: {
         marquee: 'marquee 25s linear infinite',
         marquee2: 'marquee2 25s linear infinite',
