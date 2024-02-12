@@ -155,6 +155,7 @@ function LicensePlateDetection() {
                 onClick={restore} >
                 Upload Another
               </button>
+              {/* <iframe src="https://www.rtovehicleinformation.com/" title="W3Schools Free Online Web Tutorials"></iframe> */}
             </>
           ) : (
             <></>

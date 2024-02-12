@@ -22,9 +22,9 @@ const Alert = ({ type, message }) => {
       {isVisible && (
         <div
           className={`${
-            type === 'success'
-              ? 'bg-green-100 border border-green-400 text-green-700'
-              : 'bg-red-100 border border-red-400 text-red-700'
+            type !== 'success'
+              ? 'bg-red-100 border border-red-400 text-red-700'
+              : 'bg-green-100 border border-green-400 text-green-700'
           } px-6 py-3 mt-10 w-1/2 rounded top-0 left-1/2 transform -translate-x-1/2 fixed z-50`}
           role="alert"
         >
