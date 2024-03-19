@@ -46,4 +46,4 @@ COPY . .
 EXPOSE 5000
 
 # Run the application.
-CMD gunicorn 'lpd-backend.app:app' --bind=5000:7000
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "lpd-backend.app:app"]
