@@ -31,7 +31,7 @@ function LicensePlateDetection() {
     }
   };
 
-  function restore(){
+  function restore() {
     setRender(false);
     setResp(null);
     setSelectedFile(null);
@@ -43,7 +43,6 @@ function LicensePlateDetection() {
     fetchData(); // Fetch data before rendering
     return <div>Loading...</div>;
   }
-
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -88,15 +87,21 @@ function LicensePlateDetection() {
   if (data.status === "success") {
     return (
       <>
-        <Header />
-        <div className="flex flex-col justify-center items-center h-screen bg-[linear-gradient(to_right_bottom,rgba(90,34,139,0.5),rgba(102,51,153,0.5)),url('https://images.unsplash.com/photo-1534706438758-534c634c4591?q=80&w=2439&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover">
+        <header className="fixed top-0 w-screen z-10">
+          <Header />
+        </header>
+        <div className="flex flex-col justify-center items-center h-screen  bg-[linear-gradient(to_right_bottom,rgba(32,151,172,0.3),rgba(0,142,198,0.5)),url('https://images.unsplash.com/photo-1534706438758-534c634c4591?q=80&w=2439&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover">
           <div
             className={
               "max-w-md mx-auto mt-8 p-4 bg-gray-100 rounded-md shadow-md" +
               (resp || render ? " hidden" : "")
             }
           >
-            <form onSubmit={handleSubmit} encType="multipart/form-data" id="photoupload">
+            <form
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              id="photoupload"
+            >
               <label
                 htmlFor="photoInput"
                 className="block text-sm font-medium text-gray-700"
@@ -110,7 +115,7 @@ function LicensePlateDetection() {
                 id="photoInput"
                 accept="image/*"
                 onChange={handleFileChange}
-                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-violet-500"
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:border-custom-blue4"
               />
               {previewUrl && (
                 <div className="mt-4">
@@ -125,7 +130,7 @@ function LicensePlateDetection() {
               <button
                 encType="multipart/form-data"
                 type="submit"
-                className="mt-4 p-2 w-full bg-violet-500 text-white rounded-md hover:bg-violet-600 focus:outline-none focus:shadow-outline-blue"
+                className="mt-4 p-2 w-full bg-custom-blue2 text-white rounded-md hover:bg-custom-blue4 focus:outline-none focus:shadow-outline-blue"
               >
                 Submit
               </button>
@@ -135,9 +140,9 @@ function LicensePlateDetection() {
             // Code to render when additionalCondition is true
             <div class="flex space-x-2 justify-center items-center bg-transparent">
               <span class="sr-only">Loading...</span>
-              <div class="h-4 w-4 bg-white border-violet-800 border-2 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-              <div class="h-4 w-4 bg-white border-violet-800 border-2 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-              <div class="h-4 w-4 bg-white border-violet-800 border-2 rounded-full animate-bounce"></div>
+              <div class="h-4 w-4 bg-white border-custom-blue2 border-2 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+              <div class="h-4 w-4 bg-white border-custom-blue2 border-2 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+              <div class="h-4 w-4 bg-white border-custom-blue2 border-2 rounded-full animate-bounce"></div>
             </div>
           ) : (
             ""
@@ -146,11 +151,22 @@ function LicensePlateDetection() {
           {resp ? (
             // Code to render when additionalCondition is true
             <>
-              <div className="p-4 rounded-lg shadow-md bg-violet-500 text-white text-4xl">
+              <div className="p-4 flex flex-col rounded-lg shadow-md bg-custom-blue2 text-white text-4xl">
                 {resp.result}
+                  <button
+                    class="bg-white text-base font-semibold justify-center hover:bg-custom-blue2 text-custom-blue2  hover:text-white border border-blue-500 hover:border-transparent rounded"
+                    onClick={() => {
+                      navigator.clipboard.writeText(resp.result);
+                    }}
+                  ><a href="https://www.rtovehicleinformation.com/">
+                    Get Details
+                    </a>
+                  </button>
               </div>
-              <button class="bg-white mt-4 hover:bg-violet-500 text-violet-700 font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded"
-                onClick={restore} >
+              <button
+                class="bg-white mt-4 hover:bg-custom-blue2 text-custom-blue2 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                onClick={restore}
+              >
                 Upload Another
               </button>
             </>
