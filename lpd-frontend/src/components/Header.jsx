@@ -9,13 +9,13 @@ function Header() {
           <div>
             <a href='/'>
             <button className="font-bold text-2xl tracking-wider text-white">
-              Project
+            WESTEROS WATCH
             </button>
             </a>
           </div>
           <div>
             <span className="font-bold text-2xl tracking-wider text-white">
-              Maya
+              ANIKET
             </span>
           </div>
         </div>

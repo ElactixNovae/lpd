@@ -1,1 +1,1 @@
-[{"id": 1, "name": "Alice", "username": "alice", "password": "password", "active": false}, {"id": 2, "name": "Maya", "username": "maya", "password": "password", "active": true}, {"id": 3, "name": "Aniket", "username": "aniket", "password": "password", "active": false}]
+[{"id": 1, "name": "admin", "username": "admin", "password": "password", "active": true}, {"id": 2, "name": "Maya", "username": "maya", "password": "password", "active": true}, {"id": 3, "name": "Aniket", "username": "aniket", "password": "password", "active": false}]

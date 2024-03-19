@@ -101,7 +101,7 @@ function Footer() {
             href="https://Aniketsonii.github.io/"
           >
             {" "}
-            Maya
+            Aniket
           </a>
         </div>
       </footer>
